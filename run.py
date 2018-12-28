@@ -1,10 +1,9 @@
 import main
 from pynput import keyboard
-import server
 import client
+import os
 
-
-server.start_server()
+client.connect_client()
 
 # An variable for listen_for_combinations function to set the correct key combination to enter authorisation screen.
 COMBINATIONS = [
@@ -21,6 +20,7 @@ def listen_for_combination(combination):
 
         if any(all(k in current for k in COMBO) for COMBO in COMBINATIONS):
             main.authorization_screen()
+
             listener.stop()
 
 

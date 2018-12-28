@@ -20,6 +20,7 @@ async def background_task():
 async def test_connect(sid, environ):
     await sio.emit('my response', {'data': 'Connected', 'count': 0}, room=sid,
                    namespace='/test')
+    print('client connected')
 
 
 @sio.on('disconnect')
@@ -30,5 +31,4 @@ def test_disconnect(sid):
 sio.start_background_task(background_task)
 
 
-def start_server():
-    web.run_app(app)
+web.run_app(app)
