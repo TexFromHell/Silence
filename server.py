@@ -6,14 +6,9 @@ app = web.Application()
 sio.attach(app)
 
 
-async def background_task():
-    """Example of how to send server generated events to clients."""
-    count = 0
-    while True:
-        await sio.sleep(10)
-        count += 1
-        await sio.emit('my response', {'data': 'Server generated event'},
-                       namespace='/test')
+@sio.on('disconnect')
+def test_disconnect(sid):
+    print('Client disconnected')
 
 
 @sio.on('connect')
@@ -23,12 +18,10 @@ async def test_connect(sid, environ):
     print('client connected')
 
 
-@sio.on('disconnect')
-def test_disconnect(sid):
-    print('Client disconnected')
+@sio.on('response')
+async def get_client_info(sid):
 
-
-sio.start_background_task(background_task)
+    print('client information: ')
 
 
 web.run_app(app)

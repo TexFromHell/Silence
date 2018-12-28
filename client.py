@@ -19,10 +19,14 @@ def connect_client():
 @sio.on('connect')
 def on_connect():
     conn = 'true'
-    print('- Client connected: ' + local_name + '- ', local_host)
+    print('Client connected: ' + local_name + ' -', local_host)
 
-    data = {conn, local_host, local_name}
 
+@sio.on('response')
+def client_response():
+    data = {{
+        conn, local_host, local_name}
+    }
     sio.emit('response', data)
 
 
@@ -32,8 +36,7 @@ def disconnect_client():
 
 @sio.on('disconnect')
 def on_disconnect():
-    conn = 'false'
-    print(conn, '- Client disconnected: ' + local_name)
+    print('Client disconnected: ' + local_name)
 
 # fetch all remote functions from silent...
 
