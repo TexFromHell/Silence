@@ -9,7 +9,7 @@ count_attempts = 3
 
 # This function has a purpose to check if user has entered details correctly.
 def user_check(args):
-    print(args)
+
     global count_attempts
 
     # create variable for correct user details.
@@ -26,7 +26,7 @@ def user_check(args):
 
     # if users input of username and password is correct, open the program.
     if user == correct_username and password == correct_password:
-        print('correct details')
+        print('Access Granted !')
         main.window.destroy()
         main.main_screen()
 

@@ -4,11 +4,26 @@
 from tkinter import *
 from tkinter import ttk
 import silent
-import client
-
+import socketio
+from aiohttp import web
+import socketio
+from timeit import default_timer as timer
 
 # This function creates an authentication interface screen.
-def authorization_screen():
+sio = socketio.AsyncServer(async_mode='aiohttp')
+app = web.Application()
+sio.attach(app)
+
+
+def authorization_screen(host, status):
+
+    global hostname
+    hostname = host
+
+    global conn_status
+    conn_status = status
+
+    print('host: ' + hostname, ' status: ' + conn_status)
 
     # globalise username & password entries by user.
     global window
@@ -265,20 +280,6 @@ def main_screen():
 
     about_project_tab()
 
-    # when connecting to user - create statement if the user has been connected then enable the tabs. -------------
-
-    def disable_tabs():
-
-        for i in range(3):
-            tab_control.tab(i, state="disabled")
-
-    disable_tabs()
-
-    def enable_tabs():
-
-        for i in range(3):
-            tab_control.tab(i, state="enabled")
-
     def active_targets():
 
         # Field set to display the active target options.
@@ -309,19 +310,36 @@ def main_screen():
         list_targets.config(yscrollcommand=scrollbar.set)
 
         for i in range(1):
-            list_targets.insert(END, print(client.local_name.get() + ' - ' + client.local_host.get()))
+            list_targets.insert(END, str(hostname))
 
-        if client.conn is True:
-            lbl_connection_status.configure(fg='green', text='Status: online')
+        def check_status():
 
-        else:
-            lbl_connection_status.configure(fg='red')
+            if conn_status == 'True':
+                lbl_connection_status.configure(fg='green', text='Status: ' + conn_status)
+
+                def enable_tabs():
+                    for i in range(3):
+                        tab_control.tab(i, state="normal")
+
+                enable_tabs()
+
+            else:
+                lbl_connection_status.configure(fg='red', text='Status: '+ conn_status)
+
+                def disable_tabs():
+                    for i in range(3):
+                        tab_control.tab(i, state="disabled")
+
+                disable_tabs()
+
+        check_status()
 
         # The button to connect to target's PC
         btn_connect_to_target = Button(target_frame, font=('Helvetica', 9, 'bold'), text='CONNECT')
         btn_connect_to_target.pack(side=BOTTOM, padx=5, pady=5, fill='x')
 
-    active_targets()
 
+    active_targets()
     # execute main screen.
     frame.mainloop()
+

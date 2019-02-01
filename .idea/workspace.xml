@@ -14,23 +14,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4230">
-              <caret line="285" column="49" selection-start-line="285" selection-start-column="49" selection-end-line="285" selection-end-column="49" />
-              <folding>
-                <element signature="e#139#160#0" expanded="true" />
-                <marker date="1546022273114" expanded="true" signature="12133:12304" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/silent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1110">
-              <caret line="76" selection-start-line="76" selection-end-line="76" />
+            <state relative-caret-position="30">
+              <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="14" />
               <folding>
                 <element signature="e#134#164#0" expanded="true" />
               </folding>
@@ -39,12 +26,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client.py">
+        <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="74">
+              <caret line="307" column="46" lean-forward="true" selection-start-line="307" selection-start-column="46" selection-end-line="307" selection-end-column="46" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#139#160#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -53,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="90">
+              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -65,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+            <state relative-caret-position="-523">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -89,8 +76,6 @@
       <find>screen</find>
       <find>disable</find>
       <find>automa</find>
-      <find>silent</find>
-      <find>offline</find>
       <find>start</find>
       <find>server</find>
       <find>tab_control</find>
@@ -98,6 +83,11 @@
       <find>screenshot</find>
       <find>options</find>
       <find>local</find>
+      <find>client.</find>
+      <find>client</find>
+      <find>sio</find>
+      <find>silent</find>
+      <find>offline</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -110,10 +100,10 @@
         <option value="$PROJECT_DIR$/.idea/silent.py" />
         <option value="$PROJECT_DIR$/.idea/main.py" />
         <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/silent.py" />
-        <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/client.py" />
+        <option value="$PROJECT_DIR$/silent.py" />
+        <option value="$PROJECT_DIR$/run.py" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/server.py" />
       </list>
     </option>
@@ -121,39 +111,16 @@
   <component name="ProjectFrameBounds" extendedState="4">
     <option name="x" value="67" />
     <option name="y" value="27" />
-    <option name="width" value="927" />
+    <option name="width" value="1087" />
     <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
+    <navigator proportions="" version="1">
       <showExcludedFiles Scope="false" ProjectPane="false" />
       <foldersAlwaysOnTop value="false" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Project:Silence" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Project:Silence" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="ProjectSilence" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -207,7 +174,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python">
       <module name="ProjectSilence" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -295,7 +262,6 @@
       <list>
         <item itemvalue="Python.server" />
         <item itemvalue="Python.client" />
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.silent" />
       </list>
     </recent_temporary>
@@ -323,16 +289,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="27" width="927" height="1053" extended-state="4" />
+    <frame x="67" y="27" width="1087" height="1053" extended-state="4" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" internal_type="SLIDING" order="0" sideWeight="0.49865592" weight="0.27876106" />
+      <window_info id="Project" internal_type="SLIDING" order="0" sideWeight="0.49865592" weight="0.2688928" />
       <window_info id="Structure" order="1" sideWeight="0.5013441" side_tool="true" weight="0.20418516" />
       <window_info id="Favorites" order="2" side_tool="true" weight="0.32604167" />
       <window_info anchor="bottom" id="Inspection Results" order="0" sideWeight="0.49945354" weight="0.3297062" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32900432" />
       <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.4989071" weight="0.37214363" />
-      <window_info anchor="bottom" x="0" y="418" width="1920" height="271" id="Run" order="4" sideWeight="0.6692478" weight="0.20674646" />
+      <window_info active="true" anchor="bottom" x="0" y="418" width="1920" height="271" id="Run" order="4" sideWeight="0.6692478" visible="true" weight="0.29053319" />
       <window_info anchor="bottom" id="Debug" order="5" sideWeight="0.4978142" weight="0.3960827" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -344,6 +311,26 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Project" internal_type="SLIDING" order="0" sideWeight="0.49865592" weight="0.2688928" />
+      <window_info id="Structure" order="1" sideWeight="0.5013441" side_tool="true" weight="0.20418516" />
+      <window_info id="Favorites" order="2" side_tool="true" weight="0.32604167" />
+      <window_info anchor="bottom" id="Inspection Results" order="0" sideWeight="0.49945354" weight="0.3297062" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32900432" />
+      <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.4989071" weight="0.37214363" />
+      <window_info active="true" anchor="bottom" x="0" y="418" width="1920" height="271" id="Run" order="4" sideWeight="0.6692478" visible="true" weight="0.29053319" />
+      <window_info anchor="bottom" id="Debug" order="5" sideWeight="0.4978142" weight="0.3960827" />
+      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="8" sideWeight="0.49945354" weight="0.32752994" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.33075222" side_tool="true" weight="0.33405876" />
+      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4989071" weight="0.17519042" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
@@ -379,21 +366,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.pem" />
     <entry file="file://$PROJECT_DIR$/server.js" />
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/client.py" />
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.6/site-packages/aiohttp/web.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4230">
-          <caret line="285" column="49" selection-start-line="285" selection-start-column="49" selection-end-line="285" selection-end-column="49" />
+        <state relative-caret-position="-1080">
           <folding>
-            <element signature="e#139#160#0" expanded="true" />
-            <marker date="1546022273114" expanded="true" signature="12133:12304" ph="..." />
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/silent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="4" selection-end-column="14" />
           <folding>
             <element signature="e#134#164#0" expanded="true" />
           </folding>
@@ -402,28 +388,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+        <state relative-caret-position="-523">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="74">
+          <caret line="307" column="46" lean-forward="true" selection-start-line="307" selection-start-column="46" selection-end-line="307" selection-end-column="46" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#139#160#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="90">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
