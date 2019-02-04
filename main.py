@@ -83,7 +83,7 @@ def authorization_screen(host, status):
 
 # This function creates main interface screen.
 def main_screen():
-    print('Welcome TexFromHell')
+    print('Welcome User !')
 
     # initiate main window.
     frame = Tk()
@@ -337,7 +337,6 @@ def main_screen():
         # The button to connect to target's PC
         btn_connect_to_target = Button(target_frame, font=('Helvetica', 9, 'bold'), text='CONNECT')
         btn_connect_to_target.pack(side=BOTTOM, padx=5, pady=5, fill='x')
-
 
     active_targets()
     # execute main screen.

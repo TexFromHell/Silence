@@ -2,7 +2,7 @@ from aiohttp import web
 import socketio
 import socket
 import asyncio
-from timeit import default_timer as timer
+
 
 # server.py
 
@@ -14,49 +14,38 @@ sio.attach(app)
 @sio.on('connect')
 async def on_connection(sid, environ):
     print('----USER CONNECTED----')
-    
 
-@sio.on('send hostname')
-async def on_hostname(sid, host):
 
-    print('Hostname: "' + host + '" Socket id: "' + sid + '"')
+@sio.on('get hostname')
+async def get_hostname(sid, host):
 
     global hostname
     hostname = host
 
-    await sio.emit('get hostname', hostname, room=sid)
+    global client_status
+    client_status = 'True'
+
+    print('HOSTNAME: "' + host + '" ID: "' + sid + '"')
+
+    await sio.emit('ping status', client_status, room=sid)
 
 
-@sio.on('send status')
-async def on_status(sid):
+@sio.on('get status')
+async def get_status(sid, status):
 
-    global time
-    time = timer()
-
-    global status
-    status = 'True'
-
-    try:
-        for i in range(int(time)):
-            await sio.emit('get status', status, room=sid)
-            print(hostname + ': ' + status)
-            await sio.sleep(5)
-
-    except Exception as e:
-        print('Server Error: ' + str(e))
+    print(hostname + ' : ' + status)
 
 
 @sio.on('disconnect')
 async def on_disconnection(sid):
 
+    global client_status
+    client_status = 'False'
+
     print('----USER "' + hostname + '" DISCONNECTED----')
-
-    global status
-    status = 'False'
-
-    print(hostname + ': ' + status)
-
+    print(hostname + ': ' + client_status)
 
 web.run_app(app)
+
 
 

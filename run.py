@@ -1,8 +1,9 @@
 import main
+from timeit import default_timer as timer
 from pynput import keyboard
 import socketio
 import socket
-
+import asyncio
 
 sio = socketio.Client()
 
@@ -14,7 +15,7 @@ def connect_to_server():
 
     try:
         sio.connect('http://0.0.0.0:8080')
-        sio.emit('send hostname', hostname)
+        sio.emit('get hostname', hostname)
 
     except Exception as e:
         print('Client Error: ' + str(e))
@@ -23,28 +24,25 @@ def connect_to_server():
 connect_to_server()
 
 
-def collect_data():
+@sio.on('ping status')
+def ping_status(status):
 
-    @sio.on('get hostname')
-    def get_hostname(host):
+    global conn_status
+    conn_status = status
 
-        global user_name
-        user_name = host
+    print('connection status: ' + conn_status)
 
-        print(user_name)
+    time = timer()
 
-        sio.emit('send status')
+    try:
+        for i in range(int(time)):
+            sio.emit('get status', conn_status)
+            sio.sleep(1)
 
-    @sio.on('get status')
-    def get_status(status):
-
-        global conn_status
-        conn_status = status
-
-        print('connection: ' + conn_status)
-
-
-collect_data()
+    except Exception as e:
+        print('Client Error: ' + str(e))
+        conn_status = 'False'
+        print('connection status: ' + conn_status)
 
 
 def run_gui():
