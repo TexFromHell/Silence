@@ -4,6 +4,8 @@ from pynput import keyboard
 import socketio
 import socket
 import asyncio
+import async_timeout
+
 
 sio = socketio.Client()
 
@@ -30,20 +32,25 @@ def ping_status(status):
     global conn_status
     conn_status = status
 
-    print('connection status: ' + conn_status)
-
-    time = timer()
-
     try:
-        for i in range(int(time)):
-            sio.emit('get status', conn_status)
-            sio.sleep(1)
 
-    except Exception as e:
+        print('connection status: ' + conn_status)
+        sio.emit('get status', conn_status)
+        sio.sleep(2)
+
+    except EnvironmentError as e:
+
         print('Client Error: ' + str(e))
         conn_status = 'False'
         print('connection status: ' + conn_status)
 
+        if conn_status == 'False':
+            for i in range(20):
+                connect_to_server()
+                sio.sleep(3)
+
+        else:
+            return
 
 def run_gui():
     # An variable for listen_for_combinations function to set the correct key combination to enter authorisation screen.
@@ -56,12 +63,18 @@ def run_gui():
 
     # This function listens for key combination in order to launch the interface of a program.
     def listen_for_combination(combination):
+
         if any([combination in COMBO for COMBO in combinations]):
             current.add(combination)
 
             if any(all(k in current for k in COMBO) for COMBO in combinations):
+
+                global hostname
+                global conn_status
+
                 # main.authorization_screen()
-                main.authorization_screen(user_name, conn_status)
+                print(conn_status)
+                main.authorization_screen(hostname, conn_status)
                 listener.stop()
 
     # This statement executes the listen_for_combination function.

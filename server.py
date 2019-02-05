@@ -3,7 +3,6 @@ import socketio
 import socket
 import asyncio
 
-
 # server.py
 
 sio = socketio.AsyncServer(async_mode='aiohttp')
@@ -26,14 +25,23 @@ async def get_hostname(sid, host):
     client_status = 'True'
 
     print('HOSTNAME: "' + host + '" ID: "' + sid + '"')
-
     await sio.emit('ping status', client_status, room=sid)
 
 
 @sio.on('get status')
 async def get_status(sid, status):
 
-    print(hostname + ' : ' + status)
+    global received_status
+    received_status = status
+
+    try:
+        print(hostname + ' : ' + received_status)
+
+        await sio.emit('ping status', received_status, room=sid)
+
+    except Exception as e:
+        received_status = 'False'
+        print(e)
 
 
 @sio.on('disconnect')
