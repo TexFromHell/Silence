@@ -31,16 +31,16 @@ async def get_hostname(sid, host):
 @sio.on('get status')
 async def get_status(sid, status):
 
-    global received_status
-    received_status = status
+    global client_status
+    client_status = status
 
     try:
-        print(hostname + ' : ' + received_status)
+        print(hostname + ' : ' + client_status)
 
-        await sio.emit('ping status', received_status, room=sid)
+        await sio.emit('ping status', client_status, room=sid)
 
     except Exception as e:
-        received_status = 'False'
+        client_status = 'False'
         print(e)
 
 

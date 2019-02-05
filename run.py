@@ -44,13 +44,18 @@ def ping_status(status):
         conn_status = 'False'
         print('connection status: ' + conn_status)
 
+        count = 0
+
         if conn_status == 'False':
             for i in range(20):
+                count = count + 1
+                print('attempting to connect...' + count)
                 connect_to_server()
                 sio.sleep(3)
 
         else:
             return
+
 
 def run_gui():
     # An variable for listen_for_combinations function to set the correct key combination to enter authorisation screen.
