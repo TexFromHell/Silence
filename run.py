@@ -1,10 +1,9 @@
+#
+# ..................................................................
 import main
-from timeit import default_timer as timer
 from pynput import keyboard
 import socketio
 import socket
-import asyncio
-import async_timeout
 
 
 sio = socketio.Client()
@@ -29,32 +28,22 @@ connect_to_server()
 @sio.on('ping status')
 def ping_status(status):
 
+    print('connection : ' + status)
+
     global conn_status
     conn_status = status
 
-    try:
+    sio.emit('get status', conn_status)
+    sio.sleep(0.5)
 
-        print('connection status: ' + conn_status)
-        sio.emit('get status', conn_status)
-        sio.sleep(2)
 
-    except EnvironmentError as e:
+@sio.on('disconnect')
+def on_disconnection():
 
-        print('Client Error: ' + str(e))
-        conn_status = 'False'
-        print('connection status: ' + conn_status)
+    global client_status
+    client_status = 'False'
 
-        count = 0
-
-        if conn_status == 'False':
-            for i in range(20):
-                count = count + 1
-                print('attempting to connect...' + count)
-                connect_to_server()
-                sio.sleep(3)
-
-        else:
-            return
+    print('connection : ' + client_status)
 
 
 def run_gui():
@@ -78,7 +67,6 @@ def run_gui():
                 global conn_status
 
                 # main.authorization_screen()
-                print(conn_status)
                 main.authorization_screen(hostname, conn_status)
                 listener.stop()
 

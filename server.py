@@ -1,9 +1,8 @@
+#
+# ..................................................................
 from aiohttp import web
 import socketio
-import socket
-import asyncio
 
-# server.py
 
 sio = socketio.AsyncServer(async_mode='aiohttp')
 app = web.Application()
@@ -12,6 +11,10 @@ sio.attach(app)
 
 @sio.on('connect')
 async def on_connection(sid, environ):
+
+    global client_status
+    client_status = 'True'
+
     print('----USER CONNECTED----')
 
 
@@ -20,9 +23,6 @@ async def get_hostname(sid, host):
 
     global hostname
     hostname = host
-
-    global client_status
-    client_status = 'True'
 
     print('HOSTNAME: "' + host + '" ID: "' + sid + '"')
     await sio.emit('ping status', client_status, room=sid)
@@ -35,12 +35,10 @@ async def get_status(sid, status):
     client_status = status
 
     try:
-        print(hostname + ' : ' + client_status)
-
+        print(hostname + ' : ' + status)
         await sio.emit('ping status', client_status, room=sid)
 
     except Exception as e:
-        client_status = 'False'
         print(e)
 
 
@@ -51,7 +49,6 @@ async def on_disconnection(sid):
     client_status = 'False'
 
     print('----USER "' + hostname + '" DISCONNECTED----')
-    print(hostname + ': ' + client_status)
 
 web.run_app(app)
 

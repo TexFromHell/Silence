@@ -1,18 +1,9 @@
-# this file has a purpose to hold the whole interface of an program.
+#
 # ..................................................................
 
 from tkinter import *
 from tkinter import ttk
 import silent
-import socketio
-from aiohttp import web
-import socketio
-from timeit import default_timer as timer
-
-# This function creates an authentication interface screen.
-sio = socketio.AsyncServer(async_mode='aiohttp')
-app = web.Application()
-sio.attach(app)
 
 
 def authorization_screen(host, status):
@@ -324,7 +315,7 @@ def main_screen():
                 enable_tabs()
 
             else:
-                lbl_connection_status.configure(fg='red', text='Status: '+ conn_status)
+                lbl_connection_status.configure(fg='red', text='Status: ' + conn_status)
 
                 def disable_tabs():
                     for i in range(3):

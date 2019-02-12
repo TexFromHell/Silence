@@ -1,4 +1,4 @@
-# this file has a purpose to hold all the functions of an program.
+#
 # ................................................................
 from tkinter import messagebox
 import main
