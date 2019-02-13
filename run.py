@@ -9,53 +9,39 @@ import socket
 sio = socketio.Client()
 
 
-def connect_to_server():
-
+# ..................................................................
+def connect_client():
     global hostname
     hostname = socket.gethostname()
 
-    try:
-        sio.connect('http://0.0.0.0:8080')
-        sio.emit('get hostname', hostname)
-
-    except Exception as e:
-        print('Client Error: ' + str(e))
+    sio.connect('http://0.0.0.0:8080')
+    sio.emit('get data', hostname)
 
 
-connect_to_server()
+connect_client()
 
 
-@sio.on('ping status')
-def ping_status(status):
+# ..................................................................
+@sio.on('list client')
+def list_client(users):
 
-    print('connection : ' + status)
+    global clients
+    clients = users
 
-    global conn_status
-    conn_status = status
+    for client in clients:
+        print(client['socket'])
 
-    sio.emit('get status', conn_status)
-    sio.sleep(0.5)
-
-
-@sio.on('disconnect')
-def on_disconnection():
-
-    global client_status
-    client_status = 'False'
-
-    print('connection : ' + client_status)
+    sio.emit('get data', hostname)
 
 
+# ..................................................................
 def run_gui():
-    # An variable for listen_for_combinations function to set the correct key combination to enter authorisation screen.
 
     combinations = [
         {keyboard.Key.shift_l}
     ]
-    # The currently active modifiers
     current = set()
 
-    # This function listens for key combination in order to launch the interface of a program.
     def listen_for_combination(combination):
 
         if any([combination in COMBO for COMBO in combinations]):
@@ -63,14 +49,9 @@ def run_gui():
 
             if any(all(k in current for k in COMBO) for COMBO in combinations):
 
-                global hostname
-                global conn_status
-
-                # main.authorization_screen()
-                main.authorization_screen(hostname, conn_status)
+                main.authorization_screen(clients)
                 listener.stop()
 
-    # This statement executes the listen_for_combination function.
     with keyboard.Listener(on_press=listen_for_combination) as listener:
         listener.join()
 

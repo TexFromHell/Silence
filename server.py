@@ -1,54 +1,50 @@
 #
 # ..................................................................
+from typing import List, Any
+
 from aiohttp import web
 import socketio
+import asyncio
+import time
 
 
 sio = socketio.AsyncServer(async_mode='aiohttp')
 app = web.Application()
 sio.attach(app)
 
+global users
+users = []
 
+
+# ..................................................................
 @sio.on('connect')
 async def on_connection(sid, environ):
-
-    global client_status
-    client_status = 'True'
-
     print('----USER CONNECTED----')
+    print(sid)
+
+    global user
+    user = {
+        'socket': sid,
+        'status': 'True'
+    }
+    users.append(user)
 
 
-@sio.on('get hostname')
-async def get_hostname(sid, host):
-
-    global hostname
-    hostname = host
-
-    print('HOSTNAME: "' + host + '" ID: "' + sid + '"')
-    await sio.emit('ping status', client_status, room=sid)
-
-
-@sio.on('get status')
-async def get_status(sid, status):
-
-    global client_status
-    client_status = status
-
-    try:
-        print(hostname + ' : ' + status)
-        await sio.emit('ping status', client_status, room=sid)
-
-    except Exception as e:
-        print(e)
+# ..................................................................
+@sio.on('get data')
+async def on_data(sid, hostname):
+    print(hostname)
+    user.update({'name': hostname})
+    await sio.emit('list client', users, room=sid)
+    await sio.sleep(2)
 
 
+# ..................................................................
 @sio.on('disconnect')
 async def on_disconnection(sid):
 
-    global client_status
-    client_status = 'False'
-
-    print('----USER "' + hostname + '" DISCONNECTED----')
+    print('----USER DISCONNECTED----')
+    print(sid)
 
 web.run_app(app)
 
