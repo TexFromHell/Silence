@@ -41,6 +41,7 @@ def user_check(args):
             exit()
 
 
+# ..................................................................
 def send_email():
 
     TO = 'silenciumproject@gmail.com'

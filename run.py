@@ -5,33 +5,16 @@ from pynput import keyboard
 import socketio
 import socket
 
-
 sio = socketio.Client()
+global hostname
+hostname = socket.gethostname()
 
-
-# ..................................................................
-def connect_client():
-    global hostname
-    hostname = socket.gethostname()
-
+try:
     sio.connect('http://0.0.0.0:8080')
-    sio.emit('get data', hostname)
+    sio.emit('get user', hostname)
 
-
-connect_client()
-
-
-# ..................................................................
-@sio.on('list client')
-def list_client(users):
-
-    global clients
-    clients = users
-
-    for client in clients:
-        print(client['socket'])
-
-    sio.emit('get data', hostname)
+except Exception as e:
+    print(e)
 
 
 # ..................................................................
@@ -49,7 +32,7 @@ def run_gui():
 
             if any(all(k in current for k in COMBO) for COMBO in combinations):
 
-                main.authorization_screen(clients)
+                main.authorization_screen(sio)
                 listener.stop()
 
     with keyboard.Listener(on_press=listen_for_combination) as listener:

