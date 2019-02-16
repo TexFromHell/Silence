@@ -164,7 +164,7 @@ def main_screen():
                     enable_tabs()
                 else:
                     btn_connect_to_target.config(text='CONNECT')
-                    messagebox.showwarning('Connection Error:', 'cant establish connection.')
+                    messagebox.showwarning('Connection Error:', 'cannot establish connection.')
                     disable_tabs()
 
     # ..................................................................................................................
