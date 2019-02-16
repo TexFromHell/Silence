@@ -16,8 +16,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/silent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
-              <caret line="42" selection-start-line="42" selection-end-line="42" />
+            <state relative-caret-position="495">
+              <caret line="39" column="93" lean-forward="true" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="93" />
+              <folding>
+                <element signature="e#69#99#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -25,8 +28,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="315" column="39" lean-forward="true" selection-start-line="315" selection-start-column="39" selection-end-line="315" selection-end-column="39" />
+            <state relative-caret-position="347">
+              <caret line="165" column="64" lean-forward="true" selection-start-line="165" selection-start-column="64" selection-end-line="165" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -34,8 +37,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+            <state relative-caret-position="347">
+              <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -43,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+            <state relative-caret-position="180">
+              <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -53,9 +56,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>remove</find>
-      <find>focus</find>
-      <find>focu</find>
       <find>turn on</find>
       <find>connect</find>
       <find>slider</find>
@@ -82,7 +82,10 @@
       <find>keystroke_module</find>
       <find>remote_control</find>
       <find>logging</find>
+      <find>btn</find>
+      <find>frame</find>
       <find>disable</find>
+      <find>dis</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -106,7 +109,7 @@
   <component name="ProjectFrameBounds" extendedState="4">
     <option name="x" value="79" />
     <option name="y" value="27" />
-    <option name="width" value="965" />
+    <option name="width" value="1070" />
     <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -285,7 +288,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="79" y="27" width="965" height="1053" extended-state="4" />
+    <frame x="79" y="27" width="1070" height="1053" extended-state="4" />
     <editor active="true" />
     <layout>
       <window_info id="Project" internal_type="SLIDING" order="0" sideWeight="0.49865592" weight="0.2688928" />
@@ -307,26 +310,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Project" internal_type="SLIDING" order="0" sideWeight="0.49865592" weight="0.2688928" />
-      <window_info id="Structure" order="1" sideWeight="0.5013441" side_tool="true" weight="0.20418516" />
-      <window_info id="Favorites" order="2" side_tool="true" weight="0.32604167" />
-      <window_info anchor="bottom" id="Inspection Results" order="0" sideWeight="0.49945354" weight="0.3297062" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.32900432" />
-      <window_info anchor="bottom" id="Terminal" order="3" sideWeight="0.4989071" weight="0.37214363" />
-      <window_info active="true" anchor="bottom" x="0" y="418" width="1920" height="271" id="Run" order="4" sideWeight="0.6692478" visible="true" weight="0.29053319" />
-      <window_info anchor="bottom" id="Debug" order="5" sideWeight="0.4978142" weight="0.3960827" />
-      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="8" sideWeight="0.49945354" weight="0.32752994" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.33075222" side_tool="true" weight="0.33405876" />
-      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.4989071" weight="0.17519042" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
@@ -372,31 +355,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.py">
+    <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        <state relative-caret-position="180">
+          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/silent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        <state relative-caret-position="495">
+          <caret line="39" column="93" lean-forward="true" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="93" />
+          <folding>
+            <element signature="e#69#99#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run.py">
+    <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+        <state relative-caret-position="347">
+          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="315" column="39" lean-forward="true" selection-start-line="315" selection-start-column="39" selection-end-line="315" selection-end-column="39" />
+        <state relative-caret-position="347">
+          <caret line="165" column="64" lean-forward="true" selection-start-line="165" selection-start-column="64" selection-end-line="165" selection-end-column="64" />
         </state>
       </provider>
     </entry>

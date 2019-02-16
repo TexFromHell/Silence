@@ -1,12 +1,7 @@
 #
 # ..................................................................
-from typing import List, Any
-
 from aiohttp import web
 import socketio
-import asyncio
-import time
-
 
 sio = socketio.AsyncServer(async_mode='aiohttp')
 app = web.Application()
@@ -14,6 +9,7 @@ sio.attach(app)
 
 global users
 users = []
+
 
 # ..................................................................
 @sio.on('connect')
@@ -23,14 +19,14 @@ async def on_connection(sid, environ):
 
     global user
     user = {
-        'socket': sid,
-        'status': 'True'
+        'socket': sid
     }
+
     users.append(user)
 
 
 # ..................................................................
-@sio.on('get user')
+@sio.on('get host')
 async def on_user(sid, hostname):
 
     print(hostname)
@@ -38,11 +34,25 @@ async def on_user(sid, hostname):
 
 
 # ..................................................................
-@sio.on('get data')
-async def on_data(sid):
+@sio.on('get client_list')
+async def on_client_list(sid):
 
     await sio.emit('list client', users)
-    await sio.sleep(2)
+    await sio.sleep(1)
+
+
+# ..................................................................
+@sio.on('get client_data')
+async def on_hey(sid, data):
+
+    print('value: ' + data)
+
+    client_data = [{
+            'name': data,
+            'status': 'True',
+    }]
+
+    await sio.emit('client data', client_data, room=sid)
 
 
 # ..................................................................

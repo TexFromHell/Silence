@@ -1,6 +1,5 @@
 #
 # ......................................................................................................................
-
 from tkinter import *
 from tkinter import ttk
 import silent
@@ -93,11 +92,86 @@ def main_screen():
     # set default value font.
     font_set = ('Helvetica', 8)
 
-# ......................................................................................................................
+    # ..................................................................................................................
+    def target_list():
+        # Field set to display the active target options.
+        target_frame = LabelFrame(frame, height=100, font=('Helvetica', 9, 'bold'), text='ACTIVE TARGETS')
+        target_frame.pack(side=TOP, fill='x', padx=[5, 0])
+
+        # A label to display the current connection status of a target.
+        lbl_connection_status = Label(target_frame, fg='red', font=('Helvetica', 9), text='Status: offline')
+
+        lbl_connection_status.pack(anchor='w', padx=5, pady=5)
+
+        # A frame to list the current active targets.
+        fr = Frame(target_frame)
+        fr.pack()
+
+        # A listbox which will list of all currently active targets.
+        list_targets = Listbox(fr, width=25, height=17, font=("Helvetica", 8))
+        list_targets.pack(side="left", fill='y', pady=6)
+
+        # focus on target connection list to simplify connection usage.
+        list_targets.focus()
+
+        # scroll bar for the listbox.
+        scrollbar = Scrollbar(fr, orient="vertical")
+        scrollbar.config(command=list_targets.yview)
+        scrollbar.pack(side="right", fill="y")
+
+        list_targets.config(yscrollcommand=scrollbar.set)
+
+        socket_io.emit('get client_list')
+
+        @socket_io.on('list client')
+        def list_client(users):
+
+            global clients
+            clients = users
+
+            list_targets.delete(0, END)
+
+            global client
+
+            for client in clients:
+                list_targets.insert(END, client['name'])
+                list_targets.selection_set(0)
+
+            socket_io.emit('get client_list')
+
+        def select_client():
+            print('click')
+
+            global selected_client
+            selected_client = list_targets.get(ACTIVE)
+
+            socket_io.emit('get client_data', selected_client)
+
+        btn_connect_to_target = Button(target_frame, font=font_frame, text='CONNECT', command=select_client)
+        btn_connect_to_target.pack(side=BOTTOM, padx=5, pady=5, fill='x')
+
+        @socket_io.on('client data')
+        def client_data(data):
+
+            global client_data
+            client_data = data
+
+            print(str(client_data))
+
+            for clients_data in client_data:
+                if clients_data['name'] == client['name']:
+                    btn_connect_to_target.config(text='DISCONNECT')
+                    enable_tabs()
+                else:
+                    btn_connect_to_target.config(text='CONNECT')
+                    messagebox.showwarning('Connection Error:', 'cant establish connection.')
+                    disable_tabs()
+
+    # ..................................................................................................................
     def tab_log():
         print('')
 
-# ......................................................................................................................
+        # ..............................................................................................................
         def module_logging():
 
             global tab_logging
@@ -151,7 +225,7 @@ def main_screen():
         # run the function.
         module_logging()
 
-# ......................................................................................................................
+        # ..............................................................................................................
         def module_keystroke():
             # add an field set to provide key logging options for a program.
             keystrokes_frame = LabelFrame(tab_logging, font=font_frame, text='Keystrokes')
@@ -180,7 +254,7 @@ def main_screen():
         # run the function.
         module_keystroke()
 
-# ......................................................................................................................
+        # ..............................................................................................................
         def module_screenshot():
             # add an field set to provide screen shot options for a program.
             screenshot_frame = LabelFrame(tab_logging, font=font_frame, text='Screenshots')
@@ -211,7 +285,7 @@ def main_screen():
     # run the function.
     tab_log()
 
-# ......................................................................................................................
+    # ..................................................................................................................
     def tab_remote_control():
 
         global remote_control
@@ -226,7 +300,7 @@ def main_screen():
         options_frame = LabelFrame(remote_control, height=5, font=font_frame, text='Options')
         options_frame.pack(fill='x', padx=4)
 
-# ......................................................................................................................
+        # ..............................................................................................................
         def module_remote_control():
             # add and position a label to specify the remote control status.
             lbl_start_remote = Label(options_frame, padx=2, font=font_set, text='Remote control: ')
@@ -239,7 +313,7 @@ def main_screen():
         # run the function.
         module_remote_control()
 
-# ......................................................................................................................
+        # ..............................................................................................................
         def module_remote_display():
             # add and position a label which indicates if the full screen mode is on or off.
             lbl_remote_control = Label(options_frame, padx=2, pady=10, font=font_set, text='Full screen mode: ')
@@ -258,7 +332,7 @@ def main_screen():
     # run the function.
     tab_remote_control()
 
-# ......................................................................................................................
+    # ..................................................................................................................
     def tab_extra_feature():
         tab_extra = ttk.Frame(tab_control)
         tab_control.add(tab_extra, text="   Extra Feature   ")
@@ -266,7 +340,7 @@ def main_screen():
 
     tab_extra_feature()
 
-# ......................................................................................................................
+    # ..................................................................................................................
     def tab_about_project():
         tab_about = ttk.Frame(tab_control)
         tab_control.add(tab_about, text="    About    ")
@@ -274,63 +348,18 @@ def main_screen():
 
     tab_about_project()
 
-# ......................................................................................................................
-    def target_list():
-        # Field set to display the active target options.
-        target_frame = LabelFrame(frame, height=100, font=('Helvetica', 9, 'bold'), text='ACTIVE TARGETS')
-        target_frame.pack(side=TOP, fill='x', padx=[5, 0])
+    # ..................................................................................................................
+    def disable_tabs():
+        for i in range(3):
+            tab_control.tab(i, state="disabled")
 
-        # A label to display the current connection status of a target.
-        lbl_connection_status = Label(target_frame, fg='red', font=('Helvetica', 9), text='Status: offline')
+    disable_tabs()
 
-        lbl_connection_status.pack(anchor='w', padx=5, pady=5)
-
-        # A frame to list the current active targets.
-        fr = Frame(target_frame)
-        fr.pack()
-
-        # A listbox which will list of all currently active targets.
-        list_targets = Listbox(fr, width=25, height=17, font=("Helvetica", 8))
-        list_targets.pack(side="left", fill='y', pady=6)
-
-        # focus on target connection list to simplify connection usage.
-        list_targets.focus()
-
-        # scroll bar for the listbox.
-        scrollbar = Scrollbar(fr, orient="vertical")
-        scrollbar.config(command=list_targets.yview)
-        scrollbar.pack(side="right", fill="y")
-
-        list_targets.config(yscrollcommand=scrollbar.set)
-
-# ......................................................................................................................
-        socket_io.emit('get data')
-
-        @socket_io.on('list client')
-        def list_client(users):
-            print(users)
-
-            global clients
-            clients = users
-
-            list_targets.delete(0, END)
-
-            for client in clients:
-                list_targets.insert(END, client['name'])
-
-            socket_io.emit('get data')
-
-# ......................................................................................................................
-        btn_connect_to_target = Button(target_frame, font=('Helvetica', 9, 'bold'), text='CONNECT')
-        btn_connect_to_target.pack(side=BOTTOM, padx=5, pady=5, fill='x')
-
-        def disable_tabs():
-
-            for i in range(3):
-                tab_control.tab(i, state="disabled")
-
-        disable_tabs()
-
+    def enable_tabs():
+        for i in range(3):
+            tab_control.tab(i, state="normal")
+            tab_control.select(tab_logging)
+    # ..................................................................................................................
     target_list()
     # execute main screen.
     frame.mainloop()

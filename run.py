@@ -6,12 +6,16 @@ import socketio
 import socket
 
 sio = socketio.Client()
-global hostname
-hostname = socket.gethostname()
 
 try:
-    sio.connect('http://0.0.0.0:8080')
-    sio.emit('get user', hostname)
+
+    def run():
+        global hostname
+        hostname = socket.gethostname()
+        sio.connect('http://0.0.0.0:8080')
+        sio.emit('get host', hostname)
+
+    run()
 
 except Exception as e:
     print(e)
